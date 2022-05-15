@@ -1,6 +1,8 @@
 package com.openevents.API;
 
-public class RegisterResponse {
+import java.io.Serializable;
+
+public class RegisterResponse implements Serializable {
     private String name;
     private String last_name;
     private String email;
