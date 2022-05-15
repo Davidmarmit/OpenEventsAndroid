@@ -11,15 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OpenEvents">
         <activity
-            android:name="registerActivity"
+            android:name=".RegisterActivity"
             android:exported="false"
             android:label="@string/welcome" />
         <activity
-            android:name="homeActivity"
+            android:name=".HomeActivity"
             android:exported="false"
             android:label="@string/welcome" />
         <activity
-            android:name="loginActivity"
+            android:name=".LoginActivity"
             android:exported="false"
             android:label="@string/title_activity_login" />
         <activity

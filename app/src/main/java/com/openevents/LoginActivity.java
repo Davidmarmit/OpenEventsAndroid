@@ -1,6 +1,8 @@
 package com.openevents;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.openevents.API.Api_Class;
 import com.openevents.API.Api_Interface;
-import com.openevents.API.User;
 import com.openevents.API.UserAux;
 import com.openevents.API.loginResponse;
 
@@ -21,7 +22,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class loginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,7 @@ public class loginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(loginActivity.this, registerActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
@@ -58,27 +59,30 @@ public class loginActivity extends AppCompatActivity {
                 if (!password.getText().toString().isEmpty() && !email.getText().toString().isEmpty()){
                     Log.d("Login", "onClick: " + email.getText().toString() + " " + password.getText().toString());
                     UserAux u = new UserAux(email.getText().toString(), password.getText().toString());
-                    api.login(u).enqueue(new Callback<User>() {
+                    api.login(u).enqueue(new Callback<loginResponse>() {
                         @Override
-                        public void onResponse(Call<User> call, Response<loginResponse> response) {
+                        public void onResponse(Call<loginResponse> call, Response<loginResponse> response) {
                             if (response.isSuccessful()){
-                                 String token = response.body().getToken();
-                                System.out.println(token);
+                                String token = response.body().getAccessToken();
                                 Log.d("token: ", token);
+                                SharedPreferences pref = getApplication().getSharedPreferences("token", Context.MODE_PRIVATE);
+                                pref.edit().putString("token", token).apply();
+                                Intent intent2 = new Intent(LoginActivity.this, HomeActivity.class);
+                                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent2);
+                                finish();
+                            }
+                            else{
+                                Toast.makeText(LoginActivity.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
                         public void onFailure(Call<loginResponse> call, Throwable t) {
-                            Toast.makeText(loginActivity.this, R.string.API_Failure, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, R.string.API_Failure, Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
-                //Intent intent2 = new Intent(loginActivity.this, homeActivity.class);
-                //                    // TODO intent.putExtra("user", "user");
-                //                    intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                //                    startActivity(intent2);
-                //                    finish();
             }
         });
     }
