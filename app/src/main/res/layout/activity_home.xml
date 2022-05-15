@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+        android:gravity="left"
+        android:layout_gravity="bottom"
+        android:background="@drawable/rectangle">
+
+        <ImageButton
+            android:backgroundTint="@color/light_grey"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_baseline_home_24"
+            android:layout_weight="5"
+            android:layout_gravity="center"/>
+        <ImageButton
+            android:backgroundTint="@color/light_grey"
+            android:id="@+id/btn_search"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_baseline_home_24"
+            android:layout_weight="5"
+            android:layout_gravity="center"/>
+        <ImageButton
+            android:id="@+id/btn_home"
+            android:backgroundTint="@color/black"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_baseline_home_24"
+            android:layout_weight="5"
+            android:layout_gravity="center"/>
+        <ImageButton
+            android:backgroundTint="@color/light_grey"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_baseline_home_24"
+            android:layout_weight="5"
+            android:layout_gravity="center"/>
+        <ImageButton
+            android:backgroundTint="@color/light_grey"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_baseline_home_24"
+            android:layout_weight="5"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+</LinearLayout>
