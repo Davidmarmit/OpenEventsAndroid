@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,6 +16,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Integer slashScreenTimeout = 2000;
+
+        final Handler handler = new Handler(Looper.getMainLooper());
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
         TextView title_op = findViewById(R.id.textView_login);
@@ -27,13 +33,23 @@ public class MainActivity extends AppCompatActivity {
         if (token != null) {
             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            finish();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    startActivity(intent);
+                    finish();
+                }
+            }, slashScreenTimeout);
         }else{
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            finish();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    startActivity(intent);
+                    finish();
+                }
+            }, slashScreenTimeout);
         }
     }
 }

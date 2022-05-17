@@ -7,11 +7,17 @@
         <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/drawable/rectangle.xml" value="0.329" />
         <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.23560910307898258" />
         <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout-w936dp/activity_login.xml" value="0.275" />
-        <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/activity_home.xml" value="0.5787700084245998" />
+        <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/activity_home.xml" value="0.2" />
         <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/activity_register.xml" value="0.27956989247311825" />
+        <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/fragment_events.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/fragment_navigation.xml" value="0.10185185185185185" />
+        <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/fragment_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/navigation_fragment.xml" value="0.1" />
         <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/splash_screen.xml" value="0.2484375" />
+        <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/menu/bottom_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

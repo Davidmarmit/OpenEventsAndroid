@@ -15,7 +15,6 @@ import com.openevents.API.Api_Class;
 import com.openevents.API.Api_Interface;
 import com.openevents.API.RegisterResponse;
 import com.openevents.API.User;
-import com.openevents.API.loginResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;

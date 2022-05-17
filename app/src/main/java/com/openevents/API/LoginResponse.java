@@ -2,7 +2,7 @@ package com.openevents.API;
 
 import java.io.Serializable;
 
-public class loginResponse implements Serializable {
+public class LoginResponse implements Serializable {
 
     private String accessToken;
 

@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.openevents.API.Api_Class;
 import com.openevents.API.Api_Interface;
 import com.openevents.API.UserAux;
-import com.openevents.API.loginResponse;
+import com.openevents.API.LoginResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,9 +40,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -59,9 +57,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (!password.getText().toString().isEmpty() && !email.getText().toString().isEmpty()){
                     Log.d("Login", "onClick: " + email.getText().toString() + " " + password.getText().toString());
                     UserAux u = new UserAux(email.getText().toString(), password.getText().toString());
-                    api.login(u).enqueue(new Callback<loginResponse>() {
+                    api.login(u).enqueue(new Callback<LoginResponse>() {
                         @Override
-                        public void onResponse(Call<loginResponse> call, Response<loginResponse> response) {
+                        public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                             if (response.isSuccessful()){
                                 String token = response.body().getAccessToken();
                                 Log.d("token: ", token);
@@ -78,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onFailure(Call<loginResponse> call, Throwable t) {
+                        public void onFailure(Call<LoginResponse> call, Throwable t) {
                             Toast.makeText(LoginActivity.this, R.string.API_Failure, Toast.LENGTH_SHORT).show();
                         }
                     });

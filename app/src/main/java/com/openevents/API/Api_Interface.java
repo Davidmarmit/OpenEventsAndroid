@@ -14,7 +14,7 @@ public interface Api_Interface {
 
     String LOGIN = "users/login";
     @POST(LOGIN)
-    Call<loginResponse> login(@Body UserAux user);
+    Call<LoginResponse> login(@Body UserAux user);
 
     String GET_USER = "users";
     @GET(GET_USER)
