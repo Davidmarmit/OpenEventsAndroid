@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -98,6 +99,10 @@ public class DashboardFragment extends Fragment {
                     events.addAll(response.body());
 
                     recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+                    layoutManager = new LinearLayoutManager(getActivity());
+                    recyclerView.setLayoutManager(layoutManager);
+                    adapter = new EventAdapter(events);
+                    recyclerView.setAdapter(adapter);
                 } else {
                     Toast.makeText(getActivity(), "No hay actividades", Toast.LENGTH_SHORT).show();
                 }

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Objects;
@@ -74,6 +75,10 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         Button logout = (Button) rootView.findViewById(R.id.logout);
+        TextView name = (TextView) rootView.findViewById(R.id.name);
+        TextView email = (TextView) rootView.findViewById(R.id.email);
+
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
