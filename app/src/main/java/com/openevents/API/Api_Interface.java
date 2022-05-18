@@ -1,5 +1,7 @@
 package com.openevents.API;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -16,8 +18,12 @@ public interface Api_Interface {
     @POST(LOGIN)
     Call<LoginResponse> login(@Body UserAux user);
 
-    String GET_USER = "users";
+    String GET_USER = "users/";
     @GET(GET_USER)
     Call<User> getUser(@Header("Authorization") String token);
+
+    String GET_EVENTS = "events/";
+    @GET(GET_EVENTS)
+    Call<ArrayList<Event>> getEvents(@Header("Authorization") String token);
 
 }

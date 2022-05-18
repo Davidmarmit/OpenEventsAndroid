@@ -66,6 +66,14 @@ public class ProfileFragment extends Fragment {
         }
 
 
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+        Button logout = (Button) rootView.findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,13 +87,7 @@ public class ProfileFragment extends Fragment {
                 getActivity().finish();
             }
         });
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Button logout = (Button) requireView().findViewById(R.id.logout);
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return rootView;
     }
 }

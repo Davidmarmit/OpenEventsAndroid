@@ -11,7 +11,8 @@
         <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/activity_register.xml" value="0.27956989247311825" />
-        <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/event_layout_list.xml" value="0.5" />
+        <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/fragment_dashboard.xml" value="0.33" />
         <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/fragment_events.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/fragment_myevents.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/david/StudioProjects/OpenEvents/app/src/main/res/layout/fragment_navigation.xml" value="0.10185185185185185" />

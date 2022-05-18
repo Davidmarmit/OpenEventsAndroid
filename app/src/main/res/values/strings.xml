@@ -24,4 +24,5 @@
     <string name="edit">Edit Profile</string>
     <string name="email">Email:</string>
     <string name="logout_message">Te has desconectado</string>
+    <string name="event_image">Event Image</string>
 </resources>
