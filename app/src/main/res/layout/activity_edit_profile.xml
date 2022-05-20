@@ -73,7 +73,6 @@
 
     <EditText
         android:id="@+id/PasswordEdit"
-        android:hint="@string/pass_vacio"
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -100,6 +99,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ImageView"
         android:layout_margin="15dp" />
+
 
     <Button
         android:id="@+id/SaveButton"

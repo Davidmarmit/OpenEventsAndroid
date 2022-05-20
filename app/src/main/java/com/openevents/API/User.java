@@ -62,4 +62,8 @@ public class User implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
+
+    public void setPassword(String toString) {
+        this.password = password;
+    }
 }
