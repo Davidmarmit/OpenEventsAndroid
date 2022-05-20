@@ -11,6 +11,7 @@ public class Api_Class {
         if (MyApi == null) {
             MyApi = new Retrofit.Builder()
                     .baseUrl("http://puigmal.salle.url.edu/api/v2/")
+                    //.baseUrl("http://172.16.205.68/api/v2/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }

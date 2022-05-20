@@ -110,6 +110,7 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onFailure(Call<ArrayList<Event>> call, Throwable t) {
                 Log.d("Query","Query = " + call.request().url());
+                Log.d("Error", "Error = " + t.getMessage());
                 Toast.makeText(getActivity(), R.string.API_Failure, Toast.LENGTH_SHORT).show();
             }
         });

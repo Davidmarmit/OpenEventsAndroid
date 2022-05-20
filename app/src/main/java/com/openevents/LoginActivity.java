@@ -63,8 +63,9 @@ public class LoginActivity extends AppCompatActivity {
                             if (response.isSuccessful()){
                                 String token = response.body().getAccessToken();
                                 Log.d("token: ", token);
-                                SharedPreferences pref = getApplication().getSharedPreferences("token", Context.MODE_PRIVATE);
+                                SharedPreferences pref = getApplicationContext().getSharedPreferences("token", Context.MODE_PRIVATE);
                                 pref.edit().putString("token", token).apply();
+                                pref.edit().putString("email", email.getText().toString()).apply();
                                 Intent intent2 = new Intent(LoginActivity.this, HomeActivity.class);
                                 intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent2);
@@ -77,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<LoginResponse> call, Throwable t) {
+                            Log.d("Error", "Error = " + t.getMessage());
                             Toast.makeText(LoginActivity.this, R.string.API_Failure, Toast.LENGTH_SHORT).show();
                         }
                     });

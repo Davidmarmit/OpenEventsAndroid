@@ -7,14 +7,24 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Objects;
+import com.openevents.API.Api_Class;
+import com.openevents.API.Api_Interface;
+import com.openevents.API.User;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,10 +37,16 @@ public class ProfileFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static ArrayList<User> user = new ArrayList<User>();
+    private Retrofit retrofit = Api_Class.getInstance();
+    private Api_Interface api = retrofit.create(Api_Interface.class);
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -58,6 +74,7 @@ public class ProfileFragment extends Fragment {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,10 +91,46 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+        SharedPreferences spref = getActivity().getSharedPreferences("token", Context.MODE_PRIVATE);
+        Button edit = rootView.findViewById(R.id.edit);
         Button logout = (Button) rootView.findViewById(R.id.logout);
-        TextView name = (TextView) rootView.findViewById(R.id.name);
-        TextView email = (TextView) rootView.findViewById(R.id.email);
+        TextView name = (TextView) rootView.findViewById(R.id.name_space);
+        TextView email = (TextView) rootView.findViewById(R.id.email_space);
+        ImageView profilePic = (ImageView) rootView.findViewById(R.id.profile_picture);
+        profilePic.setImageResource(R.drawable.ic_default_pp);
+        String token = spref.getString("token", null);
+        String email_value = spref.getString("email", null);
 
+        api.searchUser("Bearer " + token, email_value).enqueue(new retrofit2.Callback<ArrayList<User>>() {
+            @Override
+            public void onResponse(Call<ArrayList<User>> call, Response<ArrayList<User>> response) {
+                if(response.isSuccessful()){
+                    Log.d("response", call.request().url().toString());
+                    String fullName = response.body().get(0).getName() + " " + response.body().get(0).getLastname() ;
+                    name.setText(fullName);
+                    email.setText(response.body().get(0).getEmail());
+                } else {
+                    showToast(getActivity(), "No se ha podido obtener la información del usuario");
+                }
+            }
+            @Override
+            public void onFailure(Call<ArrayList<User>> call, Throwable t) {
+                Log.d("Query","Query = " + call.request().url());
+                Log.d("sr",t.getMessage());
+                showToast(getActivity(), "Error de connexion con la API");
+            }
+
+        });
+
+
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override

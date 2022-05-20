@@ -5,15 +5,12 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    @SerializedName("name")
+    private int id;
     private String name;
     @SerializedName("last_name")
     private String lastname;
-    @SerializedName("email")
     private String email;
-    @SerializedName("password")
     private String password;
-    @SerializedName("image")
     private String image;
 
 
@@ -56,5 +53,13 @@ public class User implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

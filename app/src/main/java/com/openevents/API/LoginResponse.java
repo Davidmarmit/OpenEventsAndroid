@@ -10,4 +10,6 @@ public class LoginResponse implements Serializable {
     public String getAccessToken() {
         return accessToken;
     }
+
+
 }
