@@ -119,7 +119,6 @@ public class ProfileFragment extends Fragment {
                 Log.d("sr",t.getMessage());
                 showToast(getActivity(), "Error de connexion con la API");
             }
-
         });
 
 

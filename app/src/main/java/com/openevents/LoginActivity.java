@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.openevents.API.Api_Class;
 import com.openevents.API.Api_Interface;
 import com.openevents.API.UserAux;
-import com.openevents.API.LoginResponse;
+import com.openevents.API.receiveclass.LoginResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;

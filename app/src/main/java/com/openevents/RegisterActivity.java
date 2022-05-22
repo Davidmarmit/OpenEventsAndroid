@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.openevents.API.Api_Class;
 import com.openevents.API.Api_Interface;
-import com.openevents.API.RegisterResponse;
+import com.openevents.API.receiveclass.RegisterResponse;
 import com.openevents.API.User;
 
 import retrofit2.Call;

@@ -1,6 +1,8 @@
 package com.openevents.API;
 
-public class Event {
+import java.io.Serializable;
+
+public class Event implements Serializable {
     private Integer id;
     private String name;
     private Integer owner_id;

@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.openevents.API.Api_Class;
@@ -91,6 +93,8 @@ public class DashboardFragment extends Fragment {
         SharedPreferences spref = getActivity().getSharedPreferences("token", Context.MODE_PRIVATE);
         String token = spref.getString("token", "");
 
+
+
         api.getEvents("Bearer" + token).enqueue(new Callback<ArrayList<Event>>() {
 
             @Override
@@ -114,10 +118,6 @@ public class DashboardFragment extends Fragment {
                 Toast.makeText(getActivity(), R.string.API_Failure, Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
-
         return rootView;
     }
 }

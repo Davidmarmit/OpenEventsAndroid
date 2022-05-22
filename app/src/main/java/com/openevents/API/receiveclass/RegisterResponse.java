@@ -1,4 +1,4 @@
-package com.openevents.API;
+package com.openevents.API.receiveclass;
 
 import java.io.Serializable;
 

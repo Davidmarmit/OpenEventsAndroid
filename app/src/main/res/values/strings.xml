@@ -30,4 +30,23 @@
     <string name="image">Image (URL):</string>
     <string name="password">Password:</string>
     <string name="pass_vacio">(Campo vacio = No modificación)</string>
+    <string name="add">Añadir</string>
+    <string name="Description">Description:</string>
+    <string name="category">Category:</string>
+    <string name="sartdate">Start Date:</string>
+    <string name="enddate">End Date:</string>
+    <string name="date_hint">(YYYY-MM-DDTHH:mm:ss)</string>
+    <string name="eventimage">EventImage</string>
+    <string name="join">Join</string>
+    <string-array name="EventCategories">
+        <item>Sports</item>
+        <item>Music</item>
+        <item>Arts</item>
+        <item>Film</item>
+        <item>Food</item>
+        <item>Travel</item>
+        <item>Business</item>
+        <item>Politics</item>
+        <item>Other</item>
+    </string-array>
 </resources>

@@ -1,16 +1,21 @@
 package com.openevents.API;
 
+import com.openevents.API.receiveclass.LoginResponse;
+import com.openevents.API.receiveclass.PostResponse;
+import com.openevents.API.receiveclass.RegisterResponse;
 import com.openevents.API.sendclass.*;
 
 import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 public interface Api_Interface {
 
@@ -53,6 +58,16 @@ public interface Api_Interface {
     String UPDATE_USER_IMAGE = "users";
     @PUT(UPDATE_USER_IMAGE)
     Call<User> updateUserImage(@Header("Authorization") String token, @Body SendImage si);
+
+    String GET_EVENT_ASSISTING = "users/";
+    @GET
+    Call<ArrayList<User>> getUsersAssistingEvent(@Header("Authorization") String token, @Url String url);
+
+    @POST
+    Call<PostResponse> addUserAssistingEvent(@Header("Authorization") String token, @Url String url);
+
+    @DELETE
+    Call<PostResponse> deleteUserAssistingEvent(@Header("Authorization") String token, @Url String url);
 
     String SEARCH_USER = "users/search/";
     @GET(SEARCH_USER)

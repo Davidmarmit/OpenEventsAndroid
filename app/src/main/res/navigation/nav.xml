@@ -16,6 +16,11 @@
         android:label="My Events"
         tools:layout="@layout/fragment_myevents" />
     <fragment
+        android:id="@+id/users"
+        android:name="com.openevents.UserFragment"
+        android:label="Users"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
         android:id="@+id/profile"
         android:name="com.openevents.ProfileFragment"
         android:label="My Profile"
