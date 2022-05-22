@@ -15,7 +15,11 @@
             android:exported="false"
             android:label="@string/welcome" />
         <activity
-            android:name=".CreateEvent"
+            android:name=".UserViewer"
+            android:exported="false"
+            android:label="@string/welcome" />
+        <activity
+            android:name=".ActivityCreateEvent"
             android:exported="false"
             android:label="@string/welcome" />
         <activity

@@ -34,6 +34,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Event evento = events.get(position);
         holder.title.setText(evento.getName());
+        if(holder.title.getText().equals("No has creado ningun evento")){
+            ImageView img = holder.imageView.findViewById(R.id.image_event);
+            img.setVisibility(View.INVISIBLE);
+        }
 
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
 

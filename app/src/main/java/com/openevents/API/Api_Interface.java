@@ -23,13 +23,17 @@ public interface Api_Interface {
     @POST(REGISTER)
     Call<RegisterResponse> register(@Body User user);
 
+    String POST_EVENT = "events";
+    @POST(POST_EVENT)
+    Call<Event> postEvent(@Header("Authorization") String token,@Body Event event);
+
     String LOGIN = "users/login";
     @POST(LOGIN)
     Call<LoginResponse> login(@Body UserAux user);
 
     String GET_USER = "users/";
     @GET(GET_USER)
-    Call<User> getUser(@Header("Authorization") String token);
+    Call<ArrayList<User>> getUsers(@Header("Authorization") String token);
 
     String GET_EVENTS = "events/";
     @GET(GET_EVENTS)
@@ -59,7 +63,6 @@ public interface Api_Interface {
     @PUT(UPDATE_USER_IMAGE)
     Call<User> updateUserImage(@Header("Authorization") String token, @Body SendImage si);
 
-    String GET_EVENT_ASSISTING = "users/";
     @GET
     Call<ArrayList<User>> getUsersAssistingEvent(@Header("Authorization") String token, @Url String url);
 

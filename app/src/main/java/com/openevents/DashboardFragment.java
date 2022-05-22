@@ -100,6 +100,7 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onResponse(Call<ArrayList<Event>> call, Response<ArrayList<Event>> response) {
                 if (response.isSuccessful()) {
+                    events.clear();
                     events.addAll(response.body());
 
                     recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);

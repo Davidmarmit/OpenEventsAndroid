@@ -1,6 +1,7 @@
 package com.openevents;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -12,8 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.openevents.API.Api_Class;
 import com.openevents.API.Api_Interface;
 import com.openevents.API.Event;
@@ -95,11 +98,14 @@ public class EventsFragment extends Fragment {
         String token = spref.getString("token", "");
         String email_value = spref.getString("email", null);
 
+        FloatingActionButton fab = rootView.findViewById(R.id.fab);
+
         api.getEvents("Bearer" + token).enqueue(new Callback<ArrayList<Event>>() {
 
             @Override
             public void onResponse(Call<ArrayList<Event>> call, Response<ArrayList<Event>> response) {
                 if (response.isSuccessful()) {
+                    events.clear();
                     events.addAll(response.body());
 
                     api.searchUser("Bearer " + token, email_value).enqueue(new retrofit2.Callback<ArrayList<User>>() {
@@ -113,7 +119,7 @@ public class EventsFragment extends Fragment {
                                     }
                                 }
                                 if(ownedEvents.size() == 0){
-                                    ownedEvents.add(0,new Event(null,"No has creado ningun evento",null,null,null,null,null,null,null,null,null,null));
+                                    ownedEvents.add(0,new Event("No has creado ningun evento",null,null,null,null,null,null,null));
                                 }
                                 recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_myevents);
                                 layoutManager = new LinearLayoutManager(getActivity());
@@ -145,10 +151,14 @@ public class EventsFragment extends Fragment {
             }
         });
 
-
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ActivityCreateEvent.class);
+                startActivity(intent);
+            }
+        });
 
         return rootView;
-
-
     }
 }

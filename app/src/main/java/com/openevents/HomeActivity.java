@@ -34,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Cerrar OpenEvents")
                 .setMessage("¿Seguro que quieres cerrar la aplicación?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         new AlertDialog.Builder(HomeActivity.this)

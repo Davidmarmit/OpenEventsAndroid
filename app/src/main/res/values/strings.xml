@@ -38,6 +38,12 @@
     <string name="date_hint">(YYYY-MM-DDTHH:mm:ss)</string>
     <string name="eventimage">EventImage</string>
     <string name="join">Join</string>
+    <string name="search">Buscar</string>
+    <string name="Friend">Send Friend Request</string>
+    <string name="id">Id:</string>
+    <string name="search_users">Search:</string>
+    <string name="location">Location:</string>
+    <string name="nparticipators">Max Participants:</string>
     <string-array name="EventCategories">
         <item>Sports</item>
         <item>Music</item>
