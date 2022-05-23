@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -120,6 +119,7 @@ public class EventsFragment extends Fragment {
                                 }
                                 if(ownedEvents.size() == 0){
                                     ownedEvents.add(0,new Event("No has creado ningun evento",null,null,null,null,null,null,null));
+                                    ownedEvents.get(0).setOwner_id(spref.getInt("id", 0));
                                 }
                                 recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_myevents);
                                 layoutManager = new LinearLayoutManager(getActivity());
@@ -154,7 +154,7 @@ public class EventsFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ActivityCreateEvent.class);
+                Intent intent = new Intent(getActivity(), CreateEventActivity.class);
                 startActivity(intent);
             }
         });

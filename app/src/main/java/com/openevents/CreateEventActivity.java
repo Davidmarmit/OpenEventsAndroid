@@ -22,7 +22,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class ActivityCreateEvent extends AppCompatActivity {
+public class CreateEventActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,14 +90,14 @@ public class ActivityCreateEvent extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         finish();
                     } else {
-                        Toast.makeText(ActivityCreateEvent.this, "Error creando evento.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreateEventActivity.this, "Error creando evento.", Toast.LENGTH_SHORT).show();
                         Log.d("Error", response.message() + " " + response.body());
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Event> call, Throwable t) {
-                    Toast.makeText(ActivityCreateEvent.this, R.string.API_Failure, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateEventActivity.this, R.string.API_Failure, Toast.LENGTH_SHORT).show();
                 }
             });
         });

@@ -25,7 +25,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class ActivityEventViewer extends AppCompatActivity {
+public class EventViewerActivity extends AppCompatActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,12 +43,14 @@ public class ActivityEventViewer extends AppCompatActivity {
         TextView eventCategory = findViewById(R.id.EventCategory);
         TextView eventEndDate = findViewById(R.id.EventEndDate);
         Button eventJoin = findViewById(R.id.JoinButton);
+        Button editEvent = findViewById(R.id.EditEventButton);
+        Button deleteEvent = findViewById(R.id.DeleteEventButton);
 
         Retrofit retrofit = Api_Class.getInstance();
         Api_Interface api = retrofit.create(Api_Interface.class);
         SharedPreferences spref = getSharedPreferences("token", Context.MODE_PRIVATE);
         String token = spref.getString("token", "");
-        api.getUsersAssistingEvent("bearer " + token, "users/" +event.getId() + "/assistances").enqueue(new Callback<ArrayList<User>>() {
+        api.getUsersAssistingEvent("bearer " + token, "events/" +event.getId() + "/assistances").enqueue(new Callback<ArrayList<User>>() {
             @Override
             public void onResponse(Call<ArrayList<User>> call, Response<ArrayList<User>> response) {
                 if(response.isSuccessful()){
@@ -77,6 +79,45 @@ public class ActivityEventViewer extends AppCompatActivity {
         eventEndDate.setText(event.getEventEnd_date());
         eventJoin.setText("Join");
 
+        if(event.getOwner_id() == spref.getInt("id", 0)){
+            editEvent.setVisibility(View.VISIBLE);
+            editEvent.setClickable(true);
+            deleteEvent.setVisibility(View.VISIBLE);
+            deleteEvent.setClickable(true);
+        }
+        editEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EventViewerActivity.this, EditEventActivity.class);
+                intent.putExtra("event", event);
+                startActivity(intent);
+            }
+        });
+
+        deleteEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                api.deleteEvent("bearer " + token, "events/" + event.getId()).enqueue(new Callback<PostResponse>() {
+                    @Override
+                    public void onResponse(Call<PostResponse> call, Response<PostResponse> response) {
+                        if(response.isSuccessful()){
+                            Toast.makeText(EventViewerActivity.this, "Evento borrado", Toast.LENGTH_SHORT).show();
+                            Log.d("Delete Event:", "Event deleted.");
+                            finish();
+                        }else{
+                            Toast.makeText(EventViewerActivity.this, "Evento no borrado por un error.", Toast.LENGTH_SHORT).show();
+                            Log.d("Delete Event:", "Event not deleted.");
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<PostResponse> call, Throwable t) {
+                        Log.d("Delete Event:", "Event not deleted.");
+                        Toast.makeText(EventViewerActivity.this, R.string.API_Failure, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
         eventJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,12 +130,12 @@ public class ActivityEventViewer extends AppCompatActivity {
                                 eventJoin.setText("Joined");
                                 eventJoin.setBackgroundColor(getResources().getColor(R.color.red));
                             } else {
-                                Toast.makeText(ActivityEventViewer.this, "Error joining event. Try again.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EventViewerActivity.this, "Error joining event. Try again.", Toast.LENGTH_SHORT).show();
                             }
                         }
                         @Override
                         public void onFailure(Call<PostResponse> call, Throwable t) {
-                            Toast.makeText(ActivityEventViewer.this, R.string.API_Failure, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EventViewerActivity.this, R.string.API_Failure, Toast.LENGTH_SHORT).show();
                         }
                     });
                 } else {
@@ -106,13 +147,13 @@ public class ActivityEventViewer extends AppCompatActivity {
                                 eventJoin.setText("Join");
                                 eventJoin.setBackgroundColor(getResources().getColor(R.color.purple_200));
                             } else {
-                                Toast.makeText(ActivityEventViewer.this, "Error leaving event. Try again.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EventViewerActivity.this, "Error leaving event. Try again.", Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
                         public void onFailure(Call<PostResponse> call, Throwable t) {
-                            Toast.makeText(ActivityEventViewer.this, R.string.API_Failure, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EventViewerActivity.this, R.string.API_Failure, Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

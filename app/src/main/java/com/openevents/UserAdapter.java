@@ -48,7 +48,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 User user = users.get(holder.getAdapterPosition());
-                Intent intent = new Intent(view.getContext(), UserViewer.class);
+                Intent intent = new Intent(view.getContext(), UserViewerActivity.class);
                 intent.putExtra("user", user);
                 view.getContext().startActivity(intent);
             }

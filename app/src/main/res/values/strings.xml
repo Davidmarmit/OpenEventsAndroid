@@ -44,6 +44,11 @@
     <string name="search_users">Search:</string>
     <string name="location">Location:</string>
     <string name="nparticipators">Max Participants:</string>
+    <string name="editevent">Edit Event</string>
+    <string name="deletevent">Delete Event</string>
+    <string name="best">Best Events</string>
+    <string name="sort_by">Sort by:</string>
+    <string name="by_category">By Category</string>
     <string-array name="EventCategories">
         <item>Sports</item>
         <item>Music</item>

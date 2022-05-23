@@ -110,7 +110,6 @@ public class UserFragment extends Fragment {
                 Toast.makeText(getActivity(), R.string.API_Failure, Toast.LENGTH_SHORT).show();
             }
         });
-
         search.addTextChangedListener(new TextWatcher() {
 
 

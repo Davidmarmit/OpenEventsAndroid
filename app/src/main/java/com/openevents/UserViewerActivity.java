@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.openevents.API.User;
 
-public class UserViewer extends AppCompatActivity {
+public class UserViewerActivity extends AppCompatActivity {
     TextView name;
     TextView email;
     TextView image;

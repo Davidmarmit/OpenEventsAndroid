@@ -1,6 +1,7 @@
 package com.openevents;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -8,11 +9,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -41,12 +46,13 @@ public class DashboardFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    private EventAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Event> events = new ArrayList<Event>();
+    private ArrayList<Event> filteredEvents = new ArrayList<Event>();
+    private ArrayList<Event> bestEventsArray = new ArrayList<Event>();
 
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -87,11 +93,39 @@ public class DashboardFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-
+        Button bestEvents = rootView.findViewById(R.id.bestEvents);
         Retrofit retrofit = Api_Class.getInstance();
         Api_Interface api = retrofit.create(Api_Interface.class);
         SharedPreferences spref = getActivity().getSharedPreferences("token", Context.MODE_PRIVATE);
         String token = spref.getString("token", "");
+
+
+        bestEvents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bestEvents.getText().toString().equals("Best Events")){
+                    bestEvents.setText("All Events");
+                    api.getBestEvents("Bearer " + token).enqueue(new Callback<ArrayList<Event>>() {
+                        @Override
+                        public void onResponse(Call<ArrayList<Event>> call, Response<ArrayList<Event>> response) {
+                            if (response.isSuccessful()) {
+                                bestEventsArray = response.body();
+                                adapter.setFilter(bestEventsArray);
+                            }else{
+                                Toast.makeText(getActivity(), "Error obteniendo los mejores eventos.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        @Override
+                        public void onFailure(Call<ArrayList<Event>> call, Throwable t) {
+                            Toast.makeText(getActivity(), R.string.API_Failure, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }else{
+                    bestEvents.setText("Best Events");
+                    adapter.setFilter(events);
+                }
+            }
+        });
 
 
 
@@ -119,6 +153,7 @@ public class DashboardFragment extends Fragment {
                 Toast.makeText(getActivity(), R.string.API_Failure, Toast.LENGTH_SHORT).show();
             }
         });
+
         return rootView;
     }
 }

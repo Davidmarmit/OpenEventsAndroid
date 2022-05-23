@@ -12,8 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.openevents.API.Event;
+import com.openevents.API.User;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> {
@@ -21,6 +21,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
 
     public EventAdapter(ArrayList<Event> events) {
         this.events = events;
+    }
+
+    public void setFilter(ArrayList<Event> newEvents){
+        events = new ArrayList<>();
+        events.addAll(newEvents);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -44,7 +50,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             @Override
             public void onClick(View view) {
                 Event event_selected = events.get(holder.getAdapterPosition());
-                Intent intent = new Intent(view.getContext(), ActivityEventViewer.class);
+                Intent intent = new Intent(view.getContext(), EventViewerActivity.class);
                 intent.putExtra("event",event_selected);
                 view.getContext().startActivity(intent);
             }
