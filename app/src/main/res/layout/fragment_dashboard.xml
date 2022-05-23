@@ -7,13 +7,99 @@
     tools:context=".DashboardFragment"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/bestEvents"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/best"
-        android:layout_margin="5sp"/>
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/bestEvents"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/best"
+                android:layout_margin="5sp"/>
+
+            <Button
+                android:id="@+id/sportsbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/sports"
+                android:layout_margin="5sp"/>
+
+            <Button
+                android:id="@+id/musicbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/music"
+                android:layout_margin="5sp"/>
+
+            <Button
+                android:id="@+id/artsbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/arts"
+                android:layout_margin="5sp"/>
+
+            <Button
+                android:id="@+id/filmbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/film"
+                android:layout_margin="5sp"/>
+
+            <Button
+                android:id="@+id/foodbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/food"
+                android:layout_margin="5sp"/>
+
+            <Button
+                android:id="@+id/travelbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/travel"
+                android:layout_margin="5sp"/>
+
+            <Button
+                android:id="@+id/businessbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/business"
+                android:layout_margin="5sp"/>
+
+            <Button
+                android:id="@+id/politicsbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/politics"
+                android:layout_margin="5sp"/>
+
+            <Button
+                android:id="@+id/otherbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/other"
+                android:layout_margin="5sp"/>
+        </LinearLayout>
+
+
+
+
+    </HorizontalScrollView>
+
+
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -23,6 +109,19 @@
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="76dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_search"
+            android:contentDescription="@string/search"
+            android:id="@+id/fab_home">
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
     </FrameLayout>
 
 

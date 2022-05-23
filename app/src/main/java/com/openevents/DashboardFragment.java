@@ -9,18 +9,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.openevents.API.Api_Class;
 import com.openevents.API.Api_Interface;
 import com.openevents.API.Event;
@@ -51,6 +47,7 @@ public class DashboardFragment extends Fragment {
     private ArrayList<Event> events = new ArrayList<Event>();
     private ArrayList<Event> filteredEvents = new ArrayList<Event>();
     private ArrayList<Event> bestEventsArray = new ArrayList<Event>();
+    private ArrayList<Event> categoryEvents = new ArrayList<Event>();
 
 
     private String mParam1;
@@ -93,12 +90,237 @@ public class DashboardFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
+        Button sports = rootView.findViewById(R.id.sportsbutton);
+        Button music = rootView.findViewById(R.id.musicbutton);
+        Button food = rootView.findViewById(R.id.foodbutton);
+        Button art = rootView.findViewById(R.id.artsbutton);
+        Button others = rootView.findViewById(R.id.otherbutton);
+        Button politics = rootView.findViewById(R.id.politicsbutton);
+        Button film = rootView.findViewById(R.id.filmbutton);
+        Button travel = rootView.findViewById(R.id.travelbutton);
+        Button business = rootView.findViewById(R.id.businessbutton);
         Button bestEvents = rootView.findViewById(R.id.bestEvents);
         Retrofit retrofit = Api_Class.getInstance();
         Api_Interface api = retrofit.create(Api_Interface.class);
         SharedPreferences spref = getActivity().getSharedPreferences("token", Context.MODE_PRIVATE);
         String token = spref.getString("token", "");
+        FloatingActionButton fab = rootView.findViewById(R.id.fab_home);
 
+        sports.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(sports.getText().equals("Sports")){
+                    sports.setText("All Events");
+                    categoryEvents.clear();
+                    if(!events.isEmpty()) {
+                        for (Event e : events) {
+                            if (e.getType().equals("Sports")) {
+                                categoryEvents.add(e);
+                            }
+                        }
+                        if(categoryEvents.isEmpty()){
+                            Toast.makeText(getContext(), "No se han encontrado eventos.", Toast.LENGTH_SHORT).show();
+                        }
+                        adapter.setFilter(categoryEvents);
+                    }
+                }else{
+                    adapter.setFilter(events);
+                    sports.setText("Sports");
+                }
+            }
+        });
+
+        music.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(music.getText().equals("Music")){
+                    music.setText("All Events");
+                    categoryEvents.clear();
+                    if(!events.isEmpty()) {
+                        for (Event e : events) {
+                            if (e.getType().equals("Music")) {
+                                categoryEvents.add(e);
+                            }
+                        }
+                        if(categoryEvents.isEmpty()){
+                            Toast.makeText(getContext(), "No se han encontrado eventos.", Toast.LENGTH_SHORT).show();
+                        }
+                        adapter.setFilter(categoryEvents);
+                    }
+                }else{
+                    adapter.setFilter(events);
+                    music.setText("Music");
+                }
+            }
+        });
+
+        food.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(food.getText().equals("Food")){
+                    food.setText("All Events");
+                    categoryEvents.clear();
+                    if(!events.isEmpty()) {
+                        for (Event e : events) {
+                            if (e.getType().equals("Food")) {
+                                categoryEvents.add(e);
+                            }
+                        }
+                        if(categoryEvents.isEmpty()){
+                            Toast.makeText(getContext(), "No se han encontrado eventos.", Toast.LENGTH_SHORT).show();
+                        }
+                        adapter.setFilter(categoryEvents);
+                    }
+                }else{
+                    adapter.setFilter(events);
+                    food.setText("Food");
+                }
+            }
+        });
+
+        art.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(art.getText().equals("Arts")){
+                    art.setText("All Events");
+                    categoryEvents.clear();
+                    if(!events.isEmpty()) {
+                        for (Event e : events) {
+                            if (e.getType().equals("Arts")) {
+                                categoryEvents.add(e);
+                            }
+                        }
+                        if(categoryEvents.isEmpty()){
+                            Toast.makeText(getContext(), "No se han encontrado eventos.", Toast.LENGTH_SHORT).show();
+                        }
+                        adapter.setFilter(categoryEvents);
+                    }
+                }else{
+                    adapter.setFilter(events);
+                    art.setText("Arts");
+                }
+            }
+        });
+
+        others.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(others.getText().equals("Other")){
+                    others.setText("All Events");
+                    categoryEvents.clear();
+                    if(!events.isEmpty()) {
+                        for (Event e : events) {
+                            if (e.getType().equals("Other")) {
+                                categoryEvents.add(e);
+                            }
+                        }
+                        if(categoryEvents.isEmpty()){
+                            Toast.makeText(getContext(), "No se han encontrado eventos.", Toast.LENGTH_SHORT).show();
+                        }
+                        adapter.setFilter(categoryEvents);
+                    }
+                }else{
+                    adapter.setFilter(events);
+                    others.setText("Other");
+                }
+            }
+        });
+
+        politics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(politics.getText().equals("Politics")){
+                    politics.setText("All Events");
+                    categoryEvents.clear();
+                    if(!events.isEmpty()) {
+                        for (Event e : events) {
+                            if (e.getType().equals("Politics")) {
+                                categoryEvents.add(e);
+                            }
+                        }
+                        if(categoryEvents.isEmpty()){
+                            Toast.makeText(getContext(), "No se han encontrado eventos.", Toast.LENGTH_SHORT).show();
+                        }
+                        adapter.setFilter(categoryEvents);
+                    }
+                }else{
+                    adapter.setFilter(events);
+                    politics.setText("Politics");
+                }
+            }
+        });
+
+        film.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(film.getText().equals("Film")){
+                    film.setText("All Events");
+                    categoryEvents.clear();
+                    if(!events.isEmpty()) {
+                        for (Event e : events) {
+                            if (e.getType().equals("Film")) {
+                                categoryEvents.add(e);
+                            }
+                        }
+                        if(categoryEvents.isEmpty()){
+                            Toast.makeText(getContext(), "No se han encontrado eventos.", Toast.LENGTH_SHORT).show();
+                        }
+                        adapter.setFilter(categoryEvents);
+                    }
+                }else{
+                    adapter.setFilter(events);
+                    film.setText("Film");
+                }
+            }
+        });
+
+        travel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(travel.getText().equals("Travel")){
+                    travel.setText("All Events");
+                    categoryEvents.clear();
+                    if(!events.isEmpty()) {
+                        for (Event e : events) {
+                            if (e.getType().equals("Travel")) {
+                                categoryEvents.add(e);
+                            }
+                        }
+                        if(categoryEvents.isEmpty()){
+                            Toast.makeText(getContext(), "No se han encontrado eventos.", Toast.LENGTH_SHORT).show();
+                        }
+                        adapter.setFilter(categoryEvents);
+                    }
+                }else{
+                    adapter.setFilter(events);
+                    travel.setText("Travel");
+                }
+            }
+        });
+
+        business.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(business.getText().equals("Business")){
+                    business.setText("All Events");
+                    categoryEvents.clear();
+                    if(!events.isEmpty()) {
+                        for (Event e : events) {
+                            if (e.getType().equals("Business")) {
+                                categoryEvents.add(e);
+                            }
+                        }
+                        if(categoryEvents.isEmpty()){
+                            Toast.makeText(getContext(), "No se han encontrado eventos.", Toast.LENGTH_SHORT).show();
+                        }
+                        adapter.setFilter(categoryEvents);
+                    }
+                }else{
+                    adapter.setFilter(events);
+                    business.setText("Arts");
+                }
+            }
+        });
 
         bestEvents.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,7 +349,14 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ActivitySearchEvent.class);
+                intent.putExtra("events", events);
+                startActivity(intent);
+            }
+        });
 
         api.getEvents("Bearer" + token).enqueue(new Callback<ArrayList<Event>>() {
 
